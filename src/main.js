@@ -1,24 +1,60 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import "./styles.scss";
+import Phaser from "phaser";
+import RexUIPlugin from "phaser3-rex-plugins/templates/ui/ui-plugin.js";
+import InputTextPlugin from "phaser3-rex-plugins/plugins/inputtext-plugin.js";
+import MainMenu from "./javascript/mainMenu.js";
+import GamePlay from "./javascript/gamePlay.js";
+import LeaderBoard from "./javascript/leaderBoard.js";
+import GameSettings from "./javascript/gameSettings.js";
+import GameOver from "./javascript/gameOver.js";
+import SetUsername from "./javascript/setUsername.js";
+import Preload from "./javascript/preload.js";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const config = {
+  type: Phaser.AUTO,
+  parent: "phaser-container",
+  dom: {
+    createContainer: true,
+  },
+  plugins: {
+    scene: [
+      {
+        key: "rexUI",
+        plugin: RexUIPlugin,
+        mapping: "rexUI",
+      },
+    ],
+    global: [
+      {
+        key: "rexInputTextPlugin",
+        plugin: InputTextPlugin,
+        start: true,
+      },
+    ],
+  },
+  scale: {
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+    width: 460,
+    height: 640,
+  },
+  physics: {
+    default: "arcade",
+    arcade: {
+      gravity: { y: 0 },
+      debug: false,
+    },
+  },
 
-setupCounter(document.querySelector('#counter'))
+  scene: [
+    Preload,
+    SetUsername,
+    MainMenu,
+    GameOver,
+    LeaderBoard,
+    GamePlay,
+    GameSettings,
+  ],
+};
+
+const game = new Phaser.Game(config); //eslint-disable-line
