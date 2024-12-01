@@ -29,7 +29,7 @@ Once you are inside of this folder run the command `npm install` to install all 
 Below shows the following commands you will need to run to achieve this:
 
 ```
-$ cd Phaser-3-Game
+$ cd Space-Dodger
 ```
 
 ```
