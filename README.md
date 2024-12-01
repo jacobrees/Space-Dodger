@@ -8,7 +8,7 @@
 
 # Live Website
 
-### [View Website](spacedodger.netlify.app)
+### [View Website](https://spacedodger.netlify.app)
 
 # Getting Started
 
